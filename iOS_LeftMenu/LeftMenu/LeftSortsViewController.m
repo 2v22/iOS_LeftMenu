@@ -8,7 +8,6 @@
 
 #import "LeftSortsViewController.h"
 #import "AppDelegate.h"
-#import "OtherViewController.h"
 
 @interface LeftSortsViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -20,9 +19,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor brownColor];
+    self.view.backgroundColor = [UIColor lightGrayColor];
     
-    NSArray *applist = @[@"WeChat",@"Line",@"WhatsApp",@"Tiktok",@"Telegram"];
+    NSArray *applist = @[@"WeChat",@"Line",@"WhatsApp",@"Tiktok",@"Telegram",
+                         @"WeChat",@"Line",@"WhatsApp",@"Tiktok",@"Telegram",
+                         @"WeChat",@"Line",@"WhatsApp",@"Tiktok",@"Telegram",
+                         @"WeChat",@"Line",@"WhatsApp",@"Tiktok",@"Telegram"];
     self.dataArray = [[NSMutableArray alloc] initWithArray:applist];
     
     UITableView *tableview = [[UITableView alloc] init];
@@ -31,7 +33,7 @@
     tableview.frame = self.view.bounds;
     tableview.dataSource = self;
     tableview.delegate  = self;
-    tableview.scrollEnabled = NO;
+    //    tableview.scrollEnabled = NO;
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableview];
 }
@@ -73,10 +75,6 @@
     
     AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [tempAppDelegate.LeftSlideVC closeLeftView];//关闭左侧抽屉
-    
-    // 跳转界面
-    //    OtherViewController *vc = [[OtherViewController alloc] init];
-    //    [tempAppDelegate.mainNavigationController pushViewController:vc animated:NO];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -101,16 +99,16 @@
     return view;
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableview.bounds.size.width, 150)];
-//    UIButton *logoutBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 110, 130, 16)];
-//    logoutBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-//    [logoutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
-//    [logoutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [logoutBtn setFont:[UIFont systemFontOfSize:16]];
-//    [view addSubview:logoutBtn];
-//    return view;
-//}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableview.bounds.size.width, 150)];
+    UIButton *logoutBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 110, 130, 16)];
+    logoutBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [logoutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [logoutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [logoutBtn setFont:[UIFont systemFontOfSize:16]];
+    [view addSubview:logoutBtn];
+    return view;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 150;
